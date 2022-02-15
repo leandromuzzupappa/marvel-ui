@@ -1,7 +1,10 @@
-import { APP_TITLE } from './utils/constants';
+import { APP_TITLE } from 'utils/constants';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import { QueryClientProvider, QueryClient, useQuery } from 'react-query';
-import { fetchCaracters } from './services/marvelService';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import { ContextProvider } from 'hooks/useContext';
+import { Routes, Route } from 'react-router-dom';
+import { routes } from 'config';
+import Characters from 'components/Characters';
 
 const queryClient = new QueryClient();
 
@@ -11,28 +14,20 @@ export default function App() {
       <Helmet>
         <title>{APP_TITLE}</title>
       </Helmet>
-      <QueryClientProvider client={queryClient}>
-        <Characters />
-      </QueryClientProvider>
+      <ContextProvider>
+        <QueryClientProvider client={queryClient}>
+          <Characters />
+          <Routes>
+            {routes.map((route) => (
+              <Route
+                key={route.key}
+                path={route.path}
+                element={<route.element />}
+              />
+            ))}
+          </Routes>
+        </QueryClientProvider>
+      </ContextProvider>
     </HelmetProvider>
   );
 }
-
-const Characters = () => {
-  const { data: characterData } = useQuery(['offset', 0], fetchCaracters, {
-    keepPreviousData: true,
-  });
-
-  return (
-    <div>
-      <h1>Characters</h1>
-      <ul>
-        {characterData?.results.map((char: { name: string }, i: number) => (
-          <li key={char.name}>
-            {i} - {char.name}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};

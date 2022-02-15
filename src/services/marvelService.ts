@@ -1,4 +1,4 @@
-import { MARVEL_KEYS } from '../utils/constants';
+import { MARVEL_KEYS } from 'utils/constants';
 import axios from 'axios';
 
 type queryKeyType = {
