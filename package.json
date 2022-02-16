@@ -10,7 +10,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write '**/*.{ts,tsx,scss,md,json}'"
+    "prettier": "prettier --write '**/*.{ts,tsx,scss,md,json}'",
+    "lint": "eslint --ext .ts --ext .tsx .",
+    "lint-warn": "eslint --ext .ts --ext .tsx . -c .eslintrc.warn.json"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -19,7 +21,8 @@
     "*.{js,jsx,less,md,json}": [
       "prettier --write"
     ],
-    "*.ts?(x)": [
+    "*.{ts,tsx}": [
+      "npm run lint",
       "prettier --parser=typescript --write"
     ]
   },
@@ -42,9 +45,17 @@
     ]
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
     "axios": "^0.25.0",
     "constate": "^3.3.0",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-sonarjs": "^0.11.0",
     "gsap": "^3.9.1",
     "prettier": "^2.5.1",
     "react": "^17.0.2",

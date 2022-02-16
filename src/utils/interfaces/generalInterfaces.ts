@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, ReactNode } from 'react';
+import { FC, MouseEventHandler } from 'react';
 
 export interface RouteItem {
   key: string;

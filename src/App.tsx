@@ -7,8 +7,6 @@ import { ContextProvider } from 'hooks/useContext';
 import { Routes, Route } from 'react-router-dom';
 import { routes } from 'config';
 
-import Loading from 'components/Loading';
-
 const queryClient = new QueryClient();
 
 export default function App() {
