@@ -1,0 +1,18 @@
+@import './variables';
+@import './mixins';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+body {
+  background: url(../../assets/images/noise.png) center repeat, $neutral;
+  overflow-x: hidden;
+}

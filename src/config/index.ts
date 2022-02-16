@@ -1,4 +1,4 @@
-import { RouteItem } from 'interfaces/generalInterfaces';
+import { RouteItem } from 'utils/interfaces/generalInterfaces';
 
 import Homepage from 'pages/Homepage';
 import Pepitos from 'pages/Pepitos';

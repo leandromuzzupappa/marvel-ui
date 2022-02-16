@@ -1,10 +1,13 @@
+import 'assets/scss/main.scss';
+
 import { APP_TITLE } from 'utils/constants';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ContextProvider } from 'hooks/useContext';
 import { Routes, Route } from 'react-router-dom';
 import { routes } from 'config';
-import Characters from 'components/Characters';
+
+import Loading from 'components/Loading';
 
 const queryClient = new QueryClient();
 
@@ -16,7 +19,6 @@ export default function App() {
       </Helmet>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
-          <Characters />
           <Routes>
             {routes.map((route) => (
               <Route

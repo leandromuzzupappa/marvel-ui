@@ -1,7 +1,7 @@
 import constate from 'constate';
 import { useState } from 'react';
 
-import { IUser } from 'interfaces/userInterfaces';
+import { IUser } from 'utils/interfaces/userInterfaces';
 
 const _useContext = () => {
   const [userData, setUserData] = useState<IUser>({} as IUser);

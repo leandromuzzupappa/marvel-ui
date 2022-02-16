@@ -1,0 +1,41 @@
+// Colors
+$white: #ffffff;
+$black: #13170e;
+
+$gray1: #eaf0f7;
+$gray2: #c8d6e5;
+$gray3: #8395a7;
+$gray4: #576574;
+$gray5: #222f3e;
+
+$neutral: #f4f0ec;
+$primary-color: #d84127;
+
+$transparent: rgba(0, 0, 0, 0);
+
+// Fonts
+@font-face {
+  font-family: 'marvel-regular';
+  src: url('../fonts/Marvel-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'formula-condensed-ultralight';
+  src: url('../fonts/PPFormulaCondensed-Ultralight.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'formula-condensed-regular';
+  src: url('../fonts/PPFormulaCondensed-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'formula-condensed-bold';
+  src: url('../fonts/PPFormulaCondensed-Bold.otf') format('opentype');
+}
+
+$marvel: 'marvel-regular', sans-serif;
+$formula-ultralight: 'formula-condensed-ultralight', sans-serif;
+$formula-regular: 'formula-condensed-regular', sans-serif;
+$formula-bold: 'formula-condensed-bold', sans-serif;
+$opensans: 'Open Sans', sans-serif;
