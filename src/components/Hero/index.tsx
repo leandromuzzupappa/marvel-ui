@@ -24,7 +24,7 @@ const Hero = () => {
   return (
     <section className="section section_hero" ref={sectionElement}>
       <div className="section_container">
-        <Title classes="section_hero-title" animation="fadeup">
+        <Title classes="section_hero-title" animation="fadeup" megaTitle>
           <span>NEW</span>
           <span>SYMBIOTE</span>
           <span>COMING</span>

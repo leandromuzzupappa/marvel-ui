@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Hero from 'components/Hero';
+import Characters from 'components/Characters';
 
 const Homepage: FC<{}> = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +12,6 @@ const Homepage: FC<{}> = () => {
 
   useEffect(() => {
     const element = ref.current;
-    console.log(element);
     element &&
       gsap.fromTo(
         element.querySelector('.section--2 h1'),
@@ -36,9 +36,7 @@ const Homepage: FC<{}> = () => {
   return (
     <div ref={ref}>
       <Hero />
-      <section className="section--2" style={{ height: '70vh' }}>
-        <h1>lenny</h1>
-      </section>
+      <Characters />
       <section
         className="section--3"
         style={{ height: '100vh', background: '#333' }}

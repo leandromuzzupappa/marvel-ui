@@ -1,0 +1,21 @@
+@import '../../assets/scss/variables';
+
+.title {
+  &-megaTitle {
+    width: min-content;
+    font-family: $formula-bold;
+    font-size: 12rem;
+    line-height: 12rem;
+    letter-spacing: 0.5rem;
+    color: $primary-color;
+
+    span {
+      display: block;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      font-size: 8rem;
+      line-height: 8rem;
+    }
+  }
+}

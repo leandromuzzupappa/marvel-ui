@@ -16,3 +16,12 @@ body {
   background: url(../../assets/images/noise.png) center repeat, $neutral;
   overflow-x: hidden;
 }
+
+.section {
+  &_container {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}

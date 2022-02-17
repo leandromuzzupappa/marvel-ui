@@ -1,3 +1,4 @@
+import './styles.scss';
 import { FC, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ITitleComponent } from 'utils/interfaces/generalInterfaces';
@@ -9,6 +10,7 @@ const Title: FC<ITitleComponent> = ({
   children,
   handleClick,
   animation,
+  megaTitle,
 }) => {
   const tl = gsap.timeline();
   const titleElement = useRef<null | HTMLHeadingElement>(null);
@@ -25,7 +27,7 @@ const Title: FC<ITitleComponent> = ({
   return (
     <h2
       ref={titleElement}
-      className={classes}
+      className={`title ${megaTitle && 'title-megaTitle'} ${classes}`}
       onClick={(e) => {
         handleClick && handleClick(e);
       }}
