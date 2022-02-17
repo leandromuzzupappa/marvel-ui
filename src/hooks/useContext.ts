@@ -5,10 +5,13 @@ import { IUser } from 'utils/interfaces/userInterfaces';
 
 const _useContext = () => {
   const [userData, setUserData] = useState<IUser>({} as IUser);
+  const [drawerVisible, setDrawerVisible] = useState(false);
 
   return {
     userData,
     setUserData,
+    drawerVisible,
+    setDrawerVisible,
   };
 };
 

@@ -20,6 +20,19 @@ export interface IButtonComponent {
   handleClick?: MouseEventHandler;
 }
 
+export interface IDrawer {
+  classes?: string;
+  closable?: boolean;
+  overlay?: boolean;
+  overlayClosable?: boolean;
+  overlayClasses?: string;
+  position?: 'top' | 'right' | 'bottom' | 'left';
+  size?: 'default' | 'small' | 'large';
+  title: string;
+  visible: boolean;
+  children: ReactNode | string;
+}
+
 export interface IMarvelFetchData {
   offset: number;
   limit: number;
