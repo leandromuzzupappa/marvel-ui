@@ -17,5 +17,10 @@
       font-size: 8rem;
       line-height: 8rem;
     }
+
+    @media only screen and (max-width: 500px) {
+      font-size: 4.5rem;
+      line-height: 4.5rem;
+    }
   }
 }

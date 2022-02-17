@@ -4,14 +4,8 @@
   &_characters {
     margin-top: 12rem;
 
-    &-titlee {
-      width: 90%;
-      max-width: 1100px;
-      margin: 0 auto;
-
-      @media only screen and (max-width: 1000px) {
-        margin: 0;
-      }
+    @media only screen and (max-width: 500px) {
+      margin-top: 6rem;
     }
 
     &-content {
@@ -25,6 +19,7 @@
     }
 
     &-info {
+      position: relative;
       border-bottom: 1px solid $gray2;
       margin: 2rem 0;
       padding: 1rem 0;
@@ -34,6 +29,55 @@
       font-size: 1.5rem;
       letter-spacing: 0.89px;
       text-transform: uppercase;
+
+      .results {
+        margin-left: auto;
+      }
+
+      .search {
+        position: absolute;
+        right: 5rem;
+        bottom: 5rem;
+
+        @media only screen and (max-width: 1000px) {
+          right: 0;
+          bottom: 7rem;
+        }
+
+        @media only screen and (max-width: 500px) {
+          position: relative;
+          right: 0;
+          bottom: 0;
+          margin-left: 1rem;
+        }
+
+        button {
+          span {
+            position: absolute;
+            left: -1rem;
+            bottom: 0.3rem;
+
+            @media only screen and (max-width: 500px) {
+              position: relative;
+              left: 0;
+              bottom: 0;
+            }
+          }
+
+          .icon_wrapper {
+            @media only screen and (max-width: 500px) {
+              display: none;
+            }
+          }
+
+          @media only screen and (max-width: 500px) {
+            position: relative;
+            width: max-content;
+            height: max-content;
+            border: 0;
+          }
+        }
+      }
     }
 
     &-card {

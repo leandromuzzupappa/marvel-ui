@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler, ReactNode } from 'react';
 import { ICharacters } from './characterInterfaces';
 
 export interface RouteItem {
@@ -12,6 +12,12 @@ export interface ITitleComponent {
   handleClick?: MouseEventHandler;
   animation?: string;
   megaTitle?: boolean;
+}
+
+export interface IButtonComponent {
+  classes?: string;
+  children: ReactNode | string;
+  handleClick?: MouseEventHandler;
 }
 
 export interface IMarvelFetchData {

@@ -1,0 +1,62 @@
+@import '../../assets/scss/variables';
+
+.btn {
+  position: relative;
+  border: 1px solid $primary-color;
+  display: grid;
+  place-content: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 200px;
+  background: $transparent;
+  cursor: pointer;
+
+  @media only screen and (max-width: 1000px) {
+    width: 150px;
+    height: 150px;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -3%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform-origin: left bottom;
+    transform: scale(0.4) translateX(-50%);
+    background: $white;
+    opacity: 0;
+    border-radius: 200px;
+    z-index: -1;
+    transition: all 0.3s;
+  }
+
+  &:hover {
+    &::before {
+      opacity: 0.6;
+      transform: scale(1) translateX(-50%);
+    }
+  }
+
+  .icon_wrapper {
+    position: relative;
+    transform: scale(1.5);
+    z-index: 1;
+
+    @media only screen and (max-width: 1000px) {
+      transform: scale(1.2);
+    }
+  }
+
+  span {
+    font-family: $formula-bold;
+    font-size: 1.5rem;
+    letter-spacing: 0.69px;
+    text-transform: uppercase;
+
+    @media only screen and (max-width: 500px) {
+      color: $primary-color;
+    }
+  }
+}

@@ -1,11 +1,13 @@
 import './styles.scss';
 
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCaracters } from 'services/marvelService';
-import Title from 'components/Title';
 import { ICharacters } from 'utils/interfaces/characterInterfaces';
+import Title from 'components/Title';
 import Card from 'components/Card';
-import { useEffect } from 'react';
+import Button from 'components/Button';
+import SearchIcon from 'components/icons/SearchIcon';
 
 const Characters = () => {
   const { data: characterData } = useQuery(['offset', 0], fetchCaracters, {
@@ -25,8 +27,14 @@ const Characters = () => {
           <span>LIST</span>
         </Title>
         <div className="section_characters-info">
-          <h4>All</h4>
-          <p>{characterData?.data.total} Results</p>
+          <h4 className="searched">All</h4>
+          <p className="results">{characterData?.data.total} Results</p>
+          <div className="search">
+            <Button classes="section_characters-search-btn">
+              <SearchIcon fill="#d84127" />
+              <span>Search</span>
+            </Button>
+          </div>
         </div>
         <div className="section_characters-content">
           {characterData?.results.map(
