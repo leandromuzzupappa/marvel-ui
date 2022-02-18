@@ -3,6 +3,7 @@ import { IRelatedInfo, IThumbnail, url } from './generalInterfaces';
 export interface ICharacters {
   id: number;
   name: string;
+  title: string;
   description: string;
   modified: string;
   thumbnail: IThumbnail;

@@ -1,4 +1,10 @@
-import { FC, MouseEventHandler, ReactNode } from 'react';
+import {
+  FC,
+  FormEventHandler,
+  MouseEventHandler,
+  ReactNode,
+  RefObject,
+} from 'react';
 import { ICharacters } from './characterInterfaces';
 
 export interface RouteItem {
@@ -31,6 +37,25 @@ export interface IDrawer {
   title: string;
   visible: boolean;
   children: ReactNode | string;
+}
+
+export interface IInput {
+  handleChange?: FormEventHandler<HTMLInputElement>;
+  label?: string;
+  containerClasses?: string;
+  classes?: string;
+  placeholder?: string;
+  type?: string;
+  innerRef?: RefObject<HTMLInputElement>;
+}
+
+export interface ISelect {
+  handleChange?: FormEventHandler<HTMLSelectElement>;
+  label?: string;
+  containerClasses?: string;
+  classes?: string;
+  defaultValue?: string;
+  innerRef?: RefObject<HTMLSelectElement>;
 }
 
 export interface IMarvelFetchData {

@@ -1,0 +1,13 @@
+@import '../../../assets/scss/variables';
+@import '../../../assets/scss/mixins';
+
+.input {
+  &_row {
+  }
+
+  padding: 0.8rem 0.8rem;
+  border: 1px solid $gray2;
+  border-radius: 0.3rem;
+  width: 100%;
+  max-width: 500px;
+}

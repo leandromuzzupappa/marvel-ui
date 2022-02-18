@@ -122,5 +122,27 @@
         }
       }
     }
+
+    &-search {
+      &_btn {
+        width: auto !important;
+        height: auto !important;
+        border-radius: 0.5rem !important;
+        padding: 0.5rem 1rem !important;
+        margin-left: 1rem;
+        color: $primary-color;
+
+        &:hover {
+          background: $primary-color;
+          color: $white;
+        }
+      }
+    }
+
+    &-drawer {
+      form {
+        display: flex;
+      }
+    }
   }
 }

@@ -1,0 +1,9 @@
+@import '../../../assets/scss/variables';
+
+.select {
+  padding: 0.8rem;
+  border: 1px solid $gray2;
+  border-radius: 0.3rem;
+  background: $transparent;
+  margin-right: 1rem;
+}

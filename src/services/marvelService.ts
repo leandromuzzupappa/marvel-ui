@@ -1,16 +1,24 @@
 import { MARVEL_KEYS } from 'utils/constants';
 import axios from 'axios';
+import { ESearchQueryNames } from 'utils/enums/generalEnums';
 
 type queryKeyType = {
-  queryKey: string | (string | number)[];
+  queryKey: string | any[];
 };
 
 export const fetchCaracters = async ({ queryKey }: queryKeyType) => {
+  console.log('service', queryKey);
+  const { fetchType, searchQuery, offset } = queryKey[1];
+
   const res = await axios.get(
-    'https://gateway.marvel.com:443/v1/public/characters',
+    `https://gateway.marvel.com:443/v1/public/${fetchType}`,
     {
       params: {
-        [queryKey[0]]: queryKey[1],
+        offset,
+        ...(searchQuery && {
+          [ESearchQueryNames[fetchType as keyof typeof ESearchQueryNames]]:
+            searchQuery,
+        }),
         ...MARVEL_KEYS,
       },
     },
