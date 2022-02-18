@@ -7,6 +7,8 @@ import { ContextProvider } from 'hooks/useContext';
 import { Routes, Route } from 'react-router-dom';
 import { routes } from 'config';
 
+import Footer from 'components/Footer';
+
 const queryClient = new QueryClient();
 
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
             ))}
           </Routes>
         </QueryClientProvider>
+        <Footer />
       </ContextProvider>
     </HelmetProvider>
   );
