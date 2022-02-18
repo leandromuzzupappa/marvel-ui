@@ -66,7 +66,7 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
             trigger: element,
             start: '-30% 70%',
             end: '10% 70%',
-            markers: true,
+            markers: false,
             scrub: true,
           },
         },
@@ -86,7 +86,27 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
             trigger: element,
             start: 'top 70%',
             end: '70% 70%',
-            markers: true,
+            markers: false,
+            scrub: true,
+          },
+        },
+      );
+
+      // Actions Prev/ Next Button
+      gsap.fromTo(
+        element.querySelector('.section_characters-actions'),
+        {
+          opacity: 0,
+          y: 200,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: element,
+            start: '15% 70%',
+            end: 'bottom 70%',
+            markers: false,
             scrub: true,
           },
         },
