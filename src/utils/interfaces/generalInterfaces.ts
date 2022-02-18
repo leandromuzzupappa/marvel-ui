@@ -6,6 +6,7 @@ import {
   RefObject,
 } from 'react';
 import { ICharacters } from './characterInterfaces';
+import { IComics } from './comicInterfaces';
 
 export interface RouteItem {
   key: string;
@@ -63,7 +64,7 @@ export interface IMarvelFetchData {
   limit: number;
   total: number;
   count: number;
-  results: ICharacters[];
+  results: (ICharacters | IComics)[];
 }
 
 export interface IThumbnail {
@@ -74,6 +75,8 @@ export interface IThumbnail {
 export interface IResourceURIName {
   resourceURI: string;
   name: string;
+  role?: string;
+  type?: string;
 }
 
 export interface IRelatedInfo {
@@ -95,4 +98,14 @@ export interface ICard {
   thumbnail?: IThumbnail;
   url: string;
   classes?: string;
+}
+
+export interface IDate {
+  type: string;
+  date: string;
+}
+
+export interface IPrice {
+  type: string;
+  price: number;
 }
