@@ -1,4 +1,5 @@
 import './styles.scss';
+import { FormEvent, RefObject, useEffect, useRef, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCaracters } from 'services/marvelService';
 import { ICharacters } from 'utils/interfaces/characterInterfaces';
@@ -10,18 +11,20 @@ import SearchIcon from 'components/icons/SearchIcon';
 import Drawer from 'components/Drawer';
 import Input from 'components/forms/Input';
 import Select from 'components/forms/Select';
-import { FormEvent, RefObject, useRef, useState } from 'react';
 import { renderOptions } from './RenderOptions';
 import { ESearchAPI } from 'utils/enums/generalEnums';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Characters = () => {
+  gsap.registerPlugin(ScrollTrigger);
+  const characterElement = useRef<null | HTMLDivElement>(null);
+
   const fetchTypeElement = useRef() as RefObject<HTMLSelectElement>;
   const searchQueryElement = useRef() as RefObject<HTMLInputElement>;
+  const limit = 20;
   const [fetchType, setFetchType] = useState<string>(ESearchAPI.characters);
   const [searchQuery, setSearchQuery] = useState('');
-
-  // setOffset is unused yet Need to dissable to deploy w/o errors
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [offset, setOffset] = useState(0);
 
   const { data: characterData } = useQuery(
@@ -31,6 +34,52 @@ const Characters = () => {
       keepPreviousData: true,
     },
   );
+
+  useEffect(() => {
+    const element = characterElement.current;
+    if (element) {
+      // Title
+      gsap.fromTo(
+        element.querySelector('.section_characters-title'),
+        {
+          opacity: 0,
+          y: -100,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scrollTrigger: {
+            trigger: element,
+            start: '-30% 70%',
+            end: '10% 70%',
+            markers: true,
+            scrub: true,
+          },
+        },
+      );
+
+      // Search Button
+      gsap.fromTo(
+        element.querySelector('.section_characters-info .search'),
+        {
+          opacity: 0,
+          x: 100,
+        },
+        {
+          opacity: 1,
+          x: 0,
+          scrollTrigger: {
+            trigger: element,
+            start: 'top 70%',
+            end: '70% 70%',
+            markers: true,
+            scrub: true,
+          },
+        },
+      );
+    }
+  }, []);
+
   const { drawerVisible, setDrawerVisible } = useContext();
 
   const handleSearch = (e: FormEvent) => {
@@ -44,7 +93,7 @@ const Characters = () => {
   };
 
   return (
-    <section className="section section_characters">
+    <section className="section section_characters" ref={characterElement}>
       <div className="section_container">
         <Title classes="section_characters-title" megaTitle>
           <span>MARVEL</span>
@@ -88,21 +137,45 @@ const Characters = () => {
           </div>
         </div>
         <div className="section_characters-content">
-          {characterData?.results.map(
-            ({ id, name, title, thumbnail }: ICharacters, i: number) => (
-              <Card
-                key={id}
-                id={id}
-                title={name ?? title}
-                thumbnail={thumbnail}
-                url={`/${fetchType}/${id}`}
-                classes={`section_characters-card ${
-                  i !== 0 && i % 2 === 0 && i % 6 === 0
-                    ? 'section_characters-card-wide'
-                    : ''
-                }`}
-              />
-            ),
+          <div className="section_characters-actions">
+            <Button
+              disabled={!offset}
+              handleClick={() =>
+                setOffset((currentOffset) => currentOffset - limit)
+              }
+            >
+              Prev page
+            </Button>
+            <Button
+              disabled={offset >= characterData?.data.total}
+              handleClick={() =>
+                setOffset((currentOffset) => currentOffset + limit)
+              }
+            >
+              Next page
+            </Button>
+          </div>
+          {characterData?.results.length > 0 ? (
+            characterData?.results.map(
+              ({ id, name, title, thumbnail }: ICharacters, i: number) => (
+                <Card
+                  key={id}
+                  id={id}
+                  title={name ?? title}
+                  thumbnail={thumbnail}
+                  url={`/${fetchType}/${id}`}
+                  classes={`section_characters-card ${
+                    i !== 0 && i % 2 === 0 && i % 6 === 0
+                      ? 'section_characters-card-wide'
+                      : ''
+                  }`}
+                />
+              ),
+            )
+          ) : (
+            <p className="section_characters-content-no_matches">
+              <strong>No matches</strong>
+            </p>
           )}
         </div>
       </div>

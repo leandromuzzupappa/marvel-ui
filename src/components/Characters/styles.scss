@@ -3,6 +3,7 @@
 .section {
   &_characters {
     margin-top: 12rem;
+    margin-bottom: 5rem;
 
     @media only screen and (max-width: 500px) {
       margin-top: 6rem;
@@ -15,6 +16,16 @@
 
       @media only screen and (max-width: 1000px) {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      &-no_matches {
+        text-align: center;
+        width: 100%;
+        grid-column: 1 / -1;
+        font-family: $formula-regular;
+        font-size: 2rem;
+        letter-spacing: 0.69px;
+        text-transform: uppercase;
       }
     }
 
@@ -139,6 +150,35 @@
         &:hover {
           background: $primary-color;
           color: $white;
+        }
+      }
+    }
+
+    &-actions {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      display: flex;
+
+      .btn {
+        margin: 0 0.3rem;
+        width: 80px;
+        height: 80px;
+
+        &:not(.btn-disabled) {
+          background: $primary-color;
+          color: $white;
+
+          &:hover {
+            background: white;
+            color: $primary-color;
+          }
+        }
+
+        &-disabled {
+          pointer-events: none;
+          border: 1px solid $gray3;
+          color: $gray3;
         }
       }
     }

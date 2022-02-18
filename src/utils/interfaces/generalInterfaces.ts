@@ -25,6 +25,7 @@ export interface IButtonComponent {
   classes?: string;
   children: ReactNode | string;
   handleClick?: MouseEventHandler;
+  disabled?: boolean;
 }
 
 export interface IDrawer {
