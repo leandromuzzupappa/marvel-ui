@@ -7,6 +7,7 @@ import { ContextProvider } from 'hooks/useContext';
 import { Routes, Route } from 'react-router-dom';
 import { routes } from 'config';
 
+import ScrollToTop from 'wrappers/ScrollToTop';
 import Footer from 'components/Footer';
 
 const queryClient = new QueryClient();
@@ -19,15 +20,17 @@ export default function App() {
       </Helmet>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
-          <Routes>
-            {routes.map((route) => (
-              <Route
-                key={route.key}
-                path={route.path}
-                element={<route.element />}
-              />
-            ))}
-          </Routes>
+          <ScrollToTop>
+            <Routes>
+              {routes.map((route) => (
+                <Route
+                  key={route.key}
+                  path={route.path}
+                  element={<route.element />}
+                />
+              ))}
+            </Routes>
+          </ScrollToTop>
         </QueryClientProvider>
         <Footer />
       </ContextProvider>

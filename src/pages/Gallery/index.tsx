@@ -1,8 +1,13 @@
+import Characters from 'components/Characters';
+import { useLocation } from 'react-router';
+
 const Gallery = () => {
+  const { pathname } = useLocation();
+  const currentPage = pathname.substring(1);
+
   return (
     <>
-      <h1>Gallery</h1>
-      <h2>2222</h2>
+      <Characters type={currentPage} rel={`gallery-${currentPage}`} />
     </>
   );
 };

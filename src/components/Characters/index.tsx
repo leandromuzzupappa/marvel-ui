@@ -16,24 +16,38 @@ import { ESearchAPI } from 'utils/enums/generalEnums';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-const Characters = () => {
+interface ICharactersComponent {
+  type?: string;
+  rel?: string;
+}
+
+const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
   gsap.registerPlugin(ScrollTrigger);
   const characterElement = useRef<null | HTMLDivElement>(null);
 
   const fetchTypeElement = useRef() as RefObject<HTMLSelectElement>;
   const searchQueryElement = useRef() as RefObject<HTMLInputElement>;
   const limit = 20;
-  const [fetchType, setFetchType] = useState<string>(ESearchAPI.characters);
+  const [fetchType, setFetchType] = useState<string>(
+    ESearchAPI[type as keyof typeof ESearchAPI],
+  );
   const [searchQuery, setSearchQuery] = useState('');
   const [offset, setOffset] = useState(0);
 
   const { data: characterData } = useQuery(
-    [`marvel-${fetchType}-data`, { fetchType, searchQuery, offset }],
+    [
+      `marvel-${fetchType}-data${rel ? `-${rel}` : ''}`,
+      { fetchType, searchQuery, offset },
+    ],
     fetchCaracters,
     {
       keepPreviousData: true,
     },
   );
+
+  useEffect(() => {
+    setFetchType(type);
+  }, [type]);
 
   useEffect(() => {
     const element = characterElement.current;

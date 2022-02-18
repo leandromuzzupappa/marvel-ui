@@ -60,6 +60,10 @@ export interface ISelect {
   innerRef?: RefObject<HTMLSelectElement>;
 }
 
+export interface IScrollToTop {
+  children: ReactNode;
+}
+
 export interface IMarvelFetchData {
   offset: number;
   limit: number;

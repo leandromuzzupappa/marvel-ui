@@ -7,7 +7,6 @@ type queryKeyType = {
 };
 
 export const fetchCaracters = async ({ queryKey }: queryKeyType) => {
-  console.log('service', queryKey);
   const { fetchType, searchQuery, offset } = queryKey[1];
 
   const res = await axios.get(
