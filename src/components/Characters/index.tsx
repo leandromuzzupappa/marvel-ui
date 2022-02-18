@@ -52,7 +52,7 @@ const Characters = () => {
           <span>LIST</span>
         </Title>
         <Drawer
-          title="Buscar personaje"
+          title="Search Characters, Comics, Series or Stories"
           visible={drawerVisible}
           position="bottom"
           size="small"
