@@ -1,7 +1,13 @@
 import { RouteItem } from 'utils/interfaces/generalInterfaces';
 
+import { ESearchAPI } from 'utils/enums/generalEnums';
+import { getKeysFromEnum } from 'utils/enumUtils';
+
 import Homepage from 'pages/Homepage';
-import Pepitos from 'pages/Pepitos';
+import Gallery from 'pages/Gallery';
+import Single from 'pages/Single';
+
+const paths = getKeysFromEnum(ESearchAPI);
 
 export const routes: RouteItem[] = [
   {
@@ -9,9 +15,14 @@ export const routes: RouteItem[] = [
     path: '/',
     element: Homepage,
   },
-  {
-    key: 'router-pepitos',
-    path: '/pepitos',
-    element: Pepitos,
-  },
+  ...paths.map((path) => ({
+    key: `router-gallery-${path}`,
+    path: `/${path}`,
+    element: Gallery,
+  })),
+  ...paths.map((path) => ({
+    key: `router-single-${path}`,
+    path: `/${path}/:id`,
+    element: Single,
+  })),
 ];
