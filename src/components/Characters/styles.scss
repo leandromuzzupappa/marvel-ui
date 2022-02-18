@@ -30,6 +30,10 @@
       letter-spacing: 0.89px;
       text-transform: uppercase;
 
+      @media only screen and (max-width: 500px) {
+        flex-wrap: wrap;
+      }
+
       .results {
         margin-left: auto;
       }
@@ -140,8 +144,25 @@
     }
 
     &-drawer {
+      @media only screen and (max-width: 500px) {
+        height: auto !important;
+      }
+
       form {
+        width: calc(100% - 0rem);
         display: flex;
+
+        @media only screen and (max-width: 500px) {
+          flex-direction: column;
+        }
+
+        [class*='search_btn'] {
+          @media only screen and (max-width: 500px) {
+            margin-left: 0;
+            margin-top: 1rem;
+            font-size: 1rem;
+          }
+        }
       }
     }
   }
