@@ -18,6 +18,10 @@
 
     &-title.title-megaTitle {
       color: $white;
+
+      @media only screen and (max-width: 500px) {
+        padding: 1rem;
+      }
     }
 
     & .section {
