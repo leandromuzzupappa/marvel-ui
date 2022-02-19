@@ -1,0 +1,186 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+.single_page {
+  &-cover {
+    position: relative;
+    min-height: 80vh;
+    padding: 5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 5%;
+      @include transform(translate(0%, -50%));
+      width: 100%;
+      max-width: 600px;
+      z-index: 10;
+      @include transition(0.2s);
+    }
+
+    &-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      margin-left: 10rem;
+      @include transition(1s);
+
+      @media only screen and (max-width: 1500px) {
+        max-width: 600px;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $black;
+        opacity: 0.5;
+        z-index: 1;
+      }
+    }
+
+    &-image {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      filter: blur(2px);
+      position: relative;
+    }
+
+    &-thumbnail {
+      position: absolute;
+      bottom: -2rem;
+      right: -2rem;
+      height: 60%;
+      object-fit: contain;
+      z-index: 2;
+    }
+  }
+
+  &-description {
+    width: 90%;
+    max-width: 1000px;
+    margin: 5rem auto;
+
+    .title {
+      font-size: 8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-family: $opensans;
+      font-size: 1.4rem;
+      margin-left: 8rem;
+      color: $gray3;
+    }
+  }
+
+  &-comics {
+    background: url(../../assets/images/noise.png) center repeat, $blue;
+    padding: 8rem 2rem;
+
+    .title {
+      margin-bottom: 2rem;
+    }
+
+    .wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+
+      .card {
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 0%;
+          background-color: $primary-color;
+          z-index: 0;
+          @include transition(0.2s);
+        }
+
+        &:hover {
+          &::before {
+            height: 100%;
+          }
+
+          img {
+            @include transform(scale(0.9));
+          }
+        }
+
+        img {
+          width: 100%;
+          display: block;
+          border: 0;
+          @include transition(0.2s);
+        }
+
+        .title {
+          font-family: $opensans;
+          font-size: 1.5rem;
+          color: $white;
+          margin-top: 1rem;
+        }
+
+        a {
+          text-decoration: none;
+          position: relative;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  &-series {
+    padding: 8rem 0;
+
+    .serie {
+      border-bottom: 1px solid $gray3;
+      padding: 2rem 0;
+      display: flex;
+      align-items: center;
+      font-family: $opensans;
+      font-size: 1.2rem;
+
+      &:hover {
+        .serie-img {
+          opacity: 1;
+          top: 50%;
+        }
+      }
+
+      &-wrapper {
+        position: relative;
+      }
+
+      &-img {
+        position: absolute;
+        top: 70%;
+        right: 1rem;
+        width: 100%;
+        max-width: 200px;
+        opacity: 0;
+        @include transition(0.4s);
+        @include transform(translate(0, -50%));
+      }
+
+      &-date {
+        margin-right: 2rem;
+      }
+
+      &-title {
+      }
+    }
+  }
+}

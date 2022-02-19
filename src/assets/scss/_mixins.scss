@@ -29,6 +29,10 @@
   @include prefix(transition, all $time);
 }
 
+@mixin transform($string) {
+  @include prefix(transform, $string);
+}
+
 @mixin shadow($x, $y, $spread, $color, $opacity) {
   @include prefix(box-shadow, $x $y $spread 0px rgba($color, $opacity));
 }

@@ -64,6 +64,13 @@ export interface IScrollToTop {
   children: ReactNode;
 }
 
+export interface IListCards {
+  title: string;
+  data: any[];
+  classes: string;
+  urlBasePath: string;
+}
+
 export interface IMarvelFetchData {
   offset: number;
   limit: number;

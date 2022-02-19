@@ -15,7 +15,7 @@ const Footer = () => {
           <Link to="/">Home</Link>
         </li>
         {itemsFooter.map((item) => (
-          <li>
+          <li key={item}>
             <Link to={`/${item}`}>{item}</Link>
           </li>
         ))}

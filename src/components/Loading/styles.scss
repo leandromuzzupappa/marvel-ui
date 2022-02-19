@@ -9,6 +9,7 @@
   background: url(../../assets/images/noise.png) center repeat, $neutral;
   display: grid;
   place-content: center;
+  z-index: 2000;
 
   &--row {
     width: 700px;
