@@ -2,11 +2,13 @@ import './styles.scss';
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import Title from 'components/Title';
+import { useContext } from 'hooks/useContext';
 
 const Hero = () => {
   const tl = gsap.timeline();
   const sectionElement = useRef<null | HTMLElement>(null);
   const sectionSelector = gsap.utils.selector(sectionElement);
+  const { loadingPage } = useContext();
 
   useEffect(() => {
     tl.fromTo(
@@ -19,7 +21,9 @@ const Hero = () => {
         delay: 0.5,
       },
     );
-  }, [tl, sectionSelector]);
+
+    console.log(22);
+  }, [tl, sectionSelector, loadingPage]);
 
   return (
     <section className="section section_hero" ref={sectionElement}>

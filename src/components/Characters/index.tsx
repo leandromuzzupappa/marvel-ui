@@ -15,6 +15,7 @@ import { renderOptions } from './RenderOptions';
 import { ESearchAPI } from 'utils/enums/generalEnums';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Loading from 'components/Loading';
 
 interface ICharactersComponent {
   type?: string;
@@ -33,8 +34,15 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
   );
   const [searchQuery, setSearchQuery] = useState('');
   const [offset, setOffset] = useState(0);
+  const { drawerVisible, setDrawerVisible, loadingPage, setLoadingPage } =
+    useContext();
 
-  const { data: characterData } = useQuery(
+  const {
+    data: characterData,
+    isError,
+    isLoading,
+    isFetched,
+  } = useQuery(
     [
       `marvel-${fetchType}-data${rel ? `-${rel}` : ''}`,
       { fetchType, searchQuery, offset },
@@ -42,6 +50,7 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
     fetchCaracters,
     {
       keepPreviousData: true,
+      useErrorBoundary: (error: any) => error.response?.status >= 500,
     },
   );
 
@@ -114,7 +123,10 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
     }
   }, []);
 
-  const { drawerVisible, setDrawerVisible } = useContext();
+  useEffect(() => {
+    if (isLoading || !isFetched) setLoadingPage(true);
+    else setLoadingPage(false);
+  }, [isLoading, isFetched, setLoadingPage]);
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
@@ -125,6 +137,15 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
     searchQueryElement?.current?.value &&
       setSearchQuery(searchQueryElement?.current?.value);
   };
+
+  if (loadingPage) return <Loading />;
+
+  if (isError)
+    return (
+      <Title megaTitle>
+        <span>Hubo un error, recarga la pagina</span>
+      </Title>
+    );
 
   return (
     <section className="section section_characters" ref={characterElement}>
@@ -189,6 +210,7 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
               Next page
             </Button>
           </div>
+
           {characterData?.results.length > 0 ? (
             characterData?.results.map(
               ({ id, name, title, thumbnail }: ICharacters, i: number) => (

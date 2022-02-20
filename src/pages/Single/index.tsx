@@ -10,6 +10,7 @@ import Title from 'components/Title';
 import { ESearchAPI } from 'utils/enums/generalEnums';
 import { ICharacters } from 'utils/interfaces/characterInterfaces';
 import ListCards from 'components/ListCards';
+import { useContext } from 'hooks/useContext';
 
 const Single = () => {
   const { id } = useParams();
@@ -23,12 +24,12 @@ const Single = () => {
       useErrorBoundary: (error: any) => error.response?.status >= 500,
     },
   );
-
+  const { loadingPage, setLoadingPage } = useContext();
   const [current, setCurrent] = useState<any[]>([]);
   const [characters, setCharacters] = useState<ICharacters[]>([]);
   const [comics, setComics] = useState([]);
   const [series, setSeries] = useState([]);
-  const [stories, setStories] = useState([]);
+  //const [stories, setStories] = useState([]);
 
   useEffect(() => {
     if (data && data?.length > 0) {
@@ -38,24 +39,17 @@ const Single = () => {
           setCharacters(item.data.data.results);
         item.idAUX === ESearchAPI.comics && setComics(item.data.data.results);
         item.idAUX === ESearchAPI.series && setSeries(item.data.data.results);
-        item.idAUX === ESearchAPI.stories && setStories(item.data.data.results);
+        //item.idAUX === ESearchAPI.stories && setStories(item.data.data.results);
       });
     }
   }, [data, isError, isLoading, currentPage]);
 
   useEffect(() => {
-    console.log({
-      current,
-      characters,
-      comics,
-      series,
-      stories,
-      isFetching,
-      isFetched,
-    });
-  }, [current, characters, comics, series, stories, isFetching, isFetched]);
+    if (isLoading || isFetching || !isFetched) setLoadingPage(true);
+    else setLoadingPage(false);
+  }, [isLoading, isFetching, isFetched, setLoadingPage]);
 
-  if (isLoading || isFetching || !isFetched) return <Loading />;
+  if (loadingPage) return <Loading />;
 
   if (isError)
     return (
