@@ -21,8 +21,6 @@ const Hero = () => {
         delay: 0.5,
       },
     );
-
-    console.log(22);
   }, [tl, sectionSelector, loadingPage]);
 
   return (

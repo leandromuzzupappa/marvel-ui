@@ -24,8 +24,6 @@ const Header = () => {
 
     window.addEventListener('scroll', handleScroll);
 
-    console.log('header');
-
     return () => window.removeEventListener('scroll', handleScroll);
   }, [position]);
 
@@ -70,8 +68,6 @@ const Header = () => {
       if (openMenuMobile) html.style.overflowY = 'hidden';
       else html.style.overflowY = 'inherit';
     }
-
-    console.log(12);
   }, [openMenuMobile]);
 
   const classes = `header-${visible ? 'visible' : 'hidden'} ${
@@ -98,7 +94,7 @@ const Header = () => {
         </nav>
         <div className="header-login">
           <li className="header-menu-item">
-            <Link to="/account/sign-in">Sign In</Link>
+            <Link to="/sign-in">Sign In</Link>
           </li>
         </div>
         <div
@@ -127,7 +123,7 @@ const Header = () => {
               </li>
             ))}
             <li className="header-menu-item header-menu-signin">
-              <Link to="/account/sign-in">Sign In</Link>
+              <Link to="/sign-in">Sign In</Link>
             </li>
           </ul>
         </nav>

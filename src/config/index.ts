@@ -6,6 +6,7 @@ import { getKeysFromEnum } from 'utils/enumUtils';
 import Homepage from 'pages/Homepage';
 import Gallery from 'pages/Gallery';
 import Single from 'pages/Single';
+import Pepitos from 'pages/Pepitos';
 
 const paths = getKeysFromEnum(ESearchAPI);
 
@@ -25,4 +26,9 @@ export const routes: RouteItem[] = [
     path: `/${path}/:id`,
     element: Single,
   })),
+  {
+    key: 'router-account',
+    path: '/sign-in',
+    element: Pepitos,
+  },
 ];

@@ -8,6 +8,7 @@ import { Routes, Route } from 'react-router-dom';
 import { routes } from 'config';
 
 import ScrollToTop from 'wrappers/ScrollToTop';
+import AuthProvider from 'wrappers/Auth';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 
@@ -20,6 +21,7 @@ export default function App() {
         <title>{APP_TITLE}</title>
       </Helmet>
       <ContextProvider>
+        <AuthProvider />
         <QueryClientProvider client={queryClient}>
           <Header />
           <ScrollToTop>
