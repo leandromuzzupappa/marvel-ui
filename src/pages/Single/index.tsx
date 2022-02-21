@@ -11,6 +11,7 @@ import { ESearchAPI } from 'utils/enums/generalEnums';
 import { ICharacters } from 'utils/interfaces/characterInterfaces';
 import ListCards from 'components/ListCards';
 import { useContext } from 'hooks/useContext';
+import Layout from 'layouts/Main';
 
 const Single = () => {
   const { id } = useParams();
@@ -59,7 +60,7 @@ const Single = () => {
     );
 
   return (
-    <>
+    <Layout>
       <section className="single_page-cover">
         <Title megaTitle classes="single_page">
           <span>{current[0]?.name ?? current[0]?.title}</span>
@@ -129,7 +130,7 @@ const Single = () => {
           </div>
         </section>
       )}
-    </>
+    </Layout>
   );
 };
 
