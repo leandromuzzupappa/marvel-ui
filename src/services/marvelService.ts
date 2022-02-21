@@ -8,6 +8,8 @@ import {
   ESingleStorie,
 } from 'utils/enums/generalEnums';
 import { getKeysFromEnum } from 'utils/enumUtils';
+//import { storageUtils } from 'utils/storageUtils';
+//const { getLocalJsonItem } = storageUtils;
 
 type queryKeyType = {
   queryKey: string | any[];
@@ -29,6 +31,17 @@ export const fetchCaracters = async ({ queryKey }: queryKeyType) => {
       },
     },
   );
+
+  /* if (fetchType === 'characters') {
+    const hides = getLocalJsonItem('marvelui').hides;
+
+    if (hides && hides.length > 0) {
+      res.data.data.results = res.data.data.results.filter(
+        (item: any) => !hides.includes(item.id),
+      );
+    }
+  } */
+
   return {
     data: res.data.data,
     results: res.data.data.results,

@@ -89,7 +89,7 @@ const Header = () => {
           <ul>
             {itemsMenu.map((item: string) => (
               <li key={item} className="header-menu-item">
-                <Link to={item}>{item}</Link>
+                <Link to={`/${item}`}>{item}</Link>
               </li>
             ))}
           </ul>
@@ -125,7 +125,7 @@ const Header = () => {
           <ul>
             {itemsMenu.map((item: string) => (
               <li key={item} className="header-menu-item">
-                <Link to={item}>{item}</Link>
+                <Link to={`/${item}`}>{item}</Link>
               </li>
             ))}
             <li className="header-menu-item header-menu-signin">

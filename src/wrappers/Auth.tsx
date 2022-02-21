@@ -15,8 +15,6 @@ const AuthProvider = () => {
     } else {
       if (pathname.includes('/account')) return navigate('/sign-up');
     }
-
-    console.log('auth', userData);
   }, [userData, pathname, navigate]);
 
   return <></>;

@@ -7,7 +7,7 @@ export const storageUtils = {
     }
   },
   getLocalJsonItem: (key: string) => {
-    return JSON.parse(localStorage.getItem(key) ?? '');
+    return JSON.parse(localStorage.getItem(key) ?? '{}');
   },
   setLocalItem: (key: string, valueObj: any) => {
     if (valueObj != null) {
