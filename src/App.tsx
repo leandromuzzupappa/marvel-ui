@@ -9,6 +9,7 @@ import { routes } from 'config';
 
 import ScrollToTop from 'wrappers/ScrollToTop';
 import Footer from 'components/Footer';
+import Header from 'components/Header';
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ export default function App() {
       </Helmet>
       <ContextProvider>
         <QueryClientProvider client={queryClient}>
+          <Header />
           <ScrollToTop>
             <Routes>
               {routes.map((route) => (

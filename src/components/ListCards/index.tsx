@@ -14,6 +14,7 @@ const ListCards = ({ title, data, classes, urlBasePath }: IListCards) => {
 
           return (
             <Card
+              key={item.id}
               title={title}
               thumbnail={item.thumbnail}
               url={`${urlBasePath}/${item.id}`}

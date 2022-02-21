@@ -112,7 +112,7 @@ const Single = () => {
                 .sort((a: any, b: any) => b?.startYear - a?.startYear)
                 .map((item: any) => {
                   return (
-                    <li className="serie">
+                    <li className="serie" key={item?.id}>
                       <p className="serie-date">
                         {item?.startYear} -- {item?.endYear}
                       </p>
