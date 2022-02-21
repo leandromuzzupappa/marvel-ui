@@ -6,6 +6,6 @@ export const animations = {
     y: 400,
     ease: 'power4.out',
     skewY: 30,
-    delay: 0.3,
+    delay: 1,
   },
 };

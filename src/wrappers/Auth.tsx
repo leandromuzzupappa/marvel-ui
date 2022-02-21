@@ -1,17 +1,23 @@
 import { useContext } from 'hooks/useContext';
-import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AuthProvider = () => {
   const { pathname } = new URL(window.location.href);
   const { userData } = useContext();
+  const navigate = useNavigate();
 
-  if (userData?.name) {
-    if (pathname.includes('/sign-in')) {
-      return <Navigate to={'/account?algo'} />;
+  useEffect(() => {
+    if (userData?.name) {
+      if (pathname.includes('/sign-up')) {
+        return navigate('/account');
+      }
+    } else {
+      if (pathname.includes('/account')) return navigate('/sign-up');
     }
-  } else {
-    if (pathname.includes('/account')) return <Navigate to={'/sign-in'} />;
-  }
+
+    console.log('auth', userData);
+  }, [userData, pathname, navigate]);
 
   return <></>;
 };

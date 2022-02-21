@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { ITitleComponent } from 'utils/interfaces/generalInterfaces';
 import { ETitleAnimations } from 'utils/enums/generalEnums';
 import { animations } from './animations';
+import { useContext } from 'hooks/useContext';
 
 const Title: FC<ITitleComponent> = ({
   classes,
@@ -12,17 +13,19 @@ const Title: FC<ITitleComponent> = ({
   animation,
   megaTitle,
 }) => {
-  const tl = gsap.timeline();
+  const { loadingPage } = useContext();
   const titleElement = useRef<null | HTMLHeadingElement>(null);
   const titleSelector = gsap.utils.selector(titleElement);
 
   useEffect(() => {
-    if (animation && animation in ETitleAnimations) {
-      const animationName =
-        ETitleAnimations[animation as keyof typeof ETitleAnimations];
-      tl.from(titleSelector('span'), animations[animationName]);
+    if (!loadingPage) {
+      if (animation && animation in ETitleAnimations) {
+        const animationName =
+          ETitleAnimations[animation as keyof typeof ETitleAnimations];
+        gsap.from(titleSelector('span'), animations[animationName]);
+      }
     }
-  }, [tl, titleSelector, animation]);
+  }, [titleSelector, animation, loadingPage]);
 
   return (
     <h2

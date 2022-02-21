@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ESearchAPI } from 'utils/enums/generalEnums';
 import { getKeysFromEnum } from 'utils/enumUtils';
 import marvelLogo from '../../assets/images/marvel-logo.svg';
+import { useContext } from 'hooks/useContext';
 
 const itemsMenu: string[] = getKeysFromEnum(ESearchAPI);
 
@@ -13,6 +14,7 @@ const Header = () => {
   const [activeItemStyles, setActiveItemStyles] = useState<any>({});
   const headerElement = useRef<HTMLDivElement>(null);
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
+  const { userData } = useContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,7 +96,11 @@ const Header = () => {
         </nav>
         <div className="header-login">
           <li className="header-menu-item">
-            <Link to="/sign-in">Sign In</Link>
+            {userData.name ? (
+              <Link to="/account">{userData.name}</Link>
+            ) : (
+              <Link to="/sign-up">Sign In</Link>
+            )}
           </li>
         </div>
         <div
@@ -123,7 +129,12 @@ const Header = () => {
               </li>
             ))}
             <li className="header-menu-item header-menu-signin">
-              <Link to="/sign-in">Sign In</Link>
+              {userData.name ? (
+                <Link to="/account">{userData.name}</Link>
+              ) : (
+                <Link to="/sign-up">Sign In</Link>
+              )}
+              <Link to="/sign-up">Sign In</Link>
             </li>
           </ul>
         </nav>
