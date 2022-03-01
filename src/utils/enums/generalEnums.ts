@@ -7,7 +7,7 @@ export enum ESearchAPI {
   characters = 'characters',
   comics = 'comics',
   series = 'series',
-  stories = 'stories',
+  //stories = 'stories',
 }
 
 export enum ESingleComic {

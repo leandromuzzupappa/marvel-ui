@@ -25,7 +25,6 @@ interface ICharactersComponent {
 const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
   gsap.registerPlugin(ScrollTrigger);
   const characterElement = useRef<null | HTMLDivElement>(null);
-
   const fetchTypeElement = useRef() as RefObject<HTMLSelectElement>;
   const searchQueryElement = useRef() as RefObject<HTMLInputElement>;
   const limit = 20;
@@ -36,7 +35,6 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
   const [offset, setOffset] = useState(0);
   const { drawerVisible, setDrawerVisible, loadingPage, setLoadingPage } =
     useContext();
-
   const {
     data: characterData,
     isError,
@@ -53,6 +51,21 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
       useErrorBoundary: (error: any) => error.response?.status >= 500,
     },
   );
+  const [position, setPosition] = useState<number>(window.pageYOffset);
+  const [visible, setVisible] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.pageYOffset;
+
+      setVisible(position > scrollPos);
+      setPosition(scrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [position]);
 
   useEffect(() => {
     setFetchType(type);
@@ -96,26 +109,6 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
             start: 'top 70%',
             end: '70% 70%',
             markers: false,
-            scrub: true,
-          },
-        },
-      );
-
-      // Actions Prev/ Next Button
-      gsap.fromTo(
-        element.querySelector('.section_characters-actions'),
-        {
-          opacity: 0,
-          y: 200,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scrollTrigger: {
-            trigger: element,
-            start: '0% 70%',
-            end: '10% 70%',
-            markers: true,
             scrub: true,
           },
         },
@@ -192,8 +185,13 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
           </div>
         </div>
         <div className="section_characters-content">
-          <div className="section_characters-actions">
+          <div
+            className={`section_characters-actions ${
+              visible ? 'visible' : 'hidden'
+            }`}
+          >
             <Button
+              classes={`${!offset ? 'dnone' : ''}`}
               disabled={!offset}
               handleClick={() =>
                 setOffset((currentOffset) => currentOffset - limit)
@@ -202,6 +200,7 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
               Prev page
             </Button>
             <Button
+              classes={`${offset >= characterData?.data.total ? 'dnone' : ''}`}
               disabled={offset >= characterData?.data.total}
               handleClick={() =>
                 setOffset((currentOffset) => currentOffset + limit)

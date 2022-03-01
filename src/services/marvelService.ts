@@ -60,8 +60,6 @@ export const fetchSingle = async ({ queryKey }: queryKeyType) => {
       ? ESingleComic
       : fetchType === ESearchAPI.series
       ? ESingleSerie
-      : fetchType === ESearchAPI.stories
-      ? ESingleStorie
       : '',
   ).map((path) => (path !== fetchType ? `${basePath}/${path}` : basePath));
 

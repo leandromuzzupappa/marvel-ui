@@ -1,4 +1,5 @@
 @import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
 
 .section {
   &_characters {
@@ -16,6 +17,11 @@
 
       @media only screen and (max-width: 1000px) {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media only screen and (max-width: 500px) {
+        gap: 0;
+        grid-template-columns: 1fr;
       }
 
       &-no_matches {
@@ -99,8 +105,18 @@
       max-height: 500px;
       overflow: hidden;
 
+      @media only screen and (max-width: 500px) {
+        max-height: 100%;
+        overflow: visible;
+        margin-bottom: 1.3rem;
+      }
+
       &-wide {
         grid-column: span 2;
+
+        @media only screen and (max-width: 500px) {
+          grid-column: 1;
+        }
       }
 
       & .card {
@@ -114,6 +130,12 @@
           display: block;
           border: 0;
           object-fit: cover;
+          @include transition(0.2s);
+          overflow: hidden;
+
+          @media only screen and (max-width: 500px) {
+            height: auto;
+          }
         }
 
         &_title {
@@ -123,6 +145,10 @@
           color: $black;
           margin: 1rem 0;
           text-transform: uppercase;
+
+          @media only screen and (max-width: 500px) {
+            font-size: 1.1rem;
+          }
         }
       }
     }
@@ -160,6 +186,14 @@
       right: 1rem;
       display: flex;
       z-index: 10;
+      @include transition(0.4s ease-in-out);
+      @include transform(translateY(200px));
+      opacity: 0;
+
+      &.visible {
+        @include transform(translateY(0px));
+        opacity: 1;
+      }
 
       .btn {
         margin: 0 0.3rem;
