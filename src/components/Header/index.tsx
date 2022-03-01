@@ -134,7 +134,6 @@ const Header = () => {
               ) : (
                 <Link to="/sign-up">Sign In</Link>
               )}
-              <Link to="/sign-up">Sign In</Link>
             </li>
           </ul>
         </nav>

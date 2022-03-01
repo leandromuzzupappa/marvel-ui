@@ -12,6 +12,11 @@
   }
 }
 
+::selection {
+  color: $white;
+  background: $primary-color;
+}
+
 html,
 body {
   width: 100%;

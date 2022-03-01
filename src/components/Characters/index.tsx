@@ -113,9 +113,9 @@ const Characters = ({ type = 'characters', rel }: ICharactersComponent) => {
           y: 0,
           scrollTrigger: {
             trigger: element,
-            start: '15% 70%',
-            end: 'bottom 70%',
-            markers: false,
+            start: '0% 70%',
+            end: '10% 70%',
+            markers: true,
             scrub: true,
           },
         },
